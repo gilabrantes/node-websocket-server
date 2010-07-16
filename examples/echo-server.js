@@ -73,7 +73,7 @@ server.addListener("connection", function(conn){
   
   server.send(conn.id, "Connected as: "+conn.id);
   conn.broadcast("<"+conn.id+"> connected");
-  
+
   conn.addListener("message", function(message){
     log("<"+conn.id+"> "+message);
     conn.broadcast("<"+conn.id+"> "+message);
@@ -83,6 +83,7 @@ server.addListener("connection", function(conn){
 server.addListener("close", function(conn){
   log("closed connection: "+conn.id);
   conn.broadcast("<"+conn.id+"> disconnected");
+  conn.close();
 });
 
 server.listen(8000);
